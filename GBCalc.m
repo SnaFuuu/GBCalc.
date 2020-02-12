@@ -116,29 +116,50 @@ function submenu22_Callback(hObject, eventdata, handles)
 rowname = {'a-','b-','c-','d-','e-','f-','g-','h-','i'};
 columnname = {'HIPÓTESES BÁSICAS DE DIMENSIONAMENTO'};
 colunmwidth = {454};
-thirddata = {'Serão implementados concretos de classe C50 (f_ck<=50MPa)','São válidas as hipótese da viga de Bernoulli.','Perfeita adesão entre os materiais.',...
-    'As tensões de tração no concreto são desconsideradas no ELU.','A ruína da peça no ELU é caracterizada pelas deformações específicas do concreto e do aço.',...
-    'O concreto deve ter encurtamento máximo de 3,5 ‰.','O alongamento máximo do aço deve ser de 10,0 ‰.','A tensão nas armaduras é obtida através dos diagramas de tensão x deformação.',...
+thirddata = {'Serão implementados concretos de classe C50 (f_ck<=50MPa)',...
+    'São válidas as hipótese da viga de Bernoulli.','Perfeita adesão entre os materiais.',...
+    'As tensões de tração no concreto são desconsideradas no ELU.',...
+    'A ruína da peça no ELU é caracterizada pelas deformações específicas do concreto e do aço.',...
+    'O concreto deve ter encurtamento máximo de 3,5 ‰.',...
+    'O alongamento máximo do aço deve ser de 10,0 ‰.',...
+    'A tensão nas armaduras é obtida através dos diagramas de tensão x deformação.',...
     'O diagrama de tensão x deformação no concreto deve ser considerado parábola-retângulo.'};
-fig = figure('Name','SIMBOLOGIA UTILIZADA','Position',[600 600 600 400],'NumberTitle','off','MenuBar','none');
-uitable(fig,'Data',thirddata','RowName',rowname,'ColumnName',columnname,'ColumnWidth',colunmwidth,'FontSize',10,'Position',[25 25 550 350]);
+fig = figure('Name','SIMBOLOGIA UTILIZADA','Position',...
+    [600 600 600 400],'NumberTitle','off','MenuBar','none');
+uitable(fig,'Data',thirddata','RowName',rowname,'ColumnName',columnname,...
+    'ColumnWidth',colunmwidth,'FontSize',10,'Position',[25 25 550 350]);
 
 % --------------------------------------------------------------------
 function submenu23_Callback(hObject, eventdata, handles)
 % hObject    handle to submenu23 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-rowname = {'Ac','Asmin','Asmáx','As','Asef.','AbT','As''','As''ef.','AbC','AsP','AsPef.','d','d"','d''','x',num2str([char(946),'x']),num2str([char(949),'c']),num2str([char(949),'s']),num2str([char(949),'''']),'av','ah','Domin.','Tempo'};
+rowname = {'Ac','Asmin','Asmáx','As','Asef.','AbT',...
+    'As''','As''ef.','AbC','AsP','AsPef.','d','d"','d''',...
+    'x',num2str([char(946),'x']),num2str([char(949),'c']),...
+    num2str([char(949),'s']),num2str([char(949),'''']),...
+    'av','ah','Domin.','Tempo'};
 columnname = {'LISTA DE SIMBOLOS'};
 colunmwidth = {454};
-thirddata = {'Área de concreto','Armadura de aço mínima de tração','Máxima armadura de aço permitida','Área de aço de calculada(tração)','Área de aço efetivamente disposta(tração)'...
-    ,'Área da barra de tração','Área de aço de calculada(compressão)','Área de aço efetivamente disposta(compressão)'...
-    ,'Área da barra de compressão','Área de aço da armadura de pele','Área de aço efetivamente disposta(pele)'...
-    ,'Altura útil','Distância da fibra mais tracionada ao C.G. de As','Distância da fibra mais comprimida ao C.G. de As'''...
-    ,'Profundidade da linha neutra','Relação x/d','Deformação específica do concreto','Deformação específica do aço tracionado'...
-    ,'Deformação específica do aço comprimido','Espaçamento vertical entre as barras','espaçamento horizontal entre as barras','Dominío de deformação','Tempo decorrido de processamento'};
-fig = figure('Name','SIMBOLOGIA UTILIZADA','Position',[600 600 600 400],'NumberTitle','off','MenuBar','none');
-uitable(fig,'Data',thirddata','RowName',rowname,'ColumnName',columnname,'ColumnWidth',colunmwidth,'FontSize',10,'Position',[25 25 550 350]);
+thirddata = {'Área de concreto','Armadura de aço mínima de tração',...
+    'Máxima armadura de aço permitida','Área de aço de calculada(tração)',...
+    'Área de aço efetivamente disposta(tração)'...
+    ,'Área da barra de tração','Área de aço de calculada(compressão)',...
+    'Área de aço efetivamente disposta(compressão)'...
+    ,'Área da barra de compressão','Área de aço da armadura de pele',...
+    'Área de aço efetivamente disposta(pele)'...
+    ,'Altura útil','Distância da fibra mais tracionada ao C.G. de As',...
+    'Distância da fibra mais comprimida ao C.G. de As'''...
+    ,'Profundidade da linha neutra','Relação x/d',...
+    'Deformação específica do concreto','Deformação específica do aço tracionado'...
+    ,'Deformação específica do aço comprimido',...
+    'Espaçamento vertical entre as barras',...
+    'espaçamento horizontal entre as barras','Dominío de deformação','Tempo decorrido de processamento'};
+fig = figure('Name','SIMBOLOGIA UTILIZADA',...
+    'Position',[600 600 600 400],'NumberTitle','off','MenuBar','none');
+uitable(fig,'Data',thirddata','RowName',rowname,...
+    'ColumnName',columnname,'ColumnWidth',...
+    colunmwidth,'FontSize',10,'Position',[25 25 550 350]);
 
 % --- Executes on selection change in popupmenu1.
 function popupmenu1_Callback(hObject, eventdata, handles)
@@ -571,10 +592,10 @@ elim = 10*m;
 
 %2.0 CÁLCULO E DETALHAMENTO DAS ARMADURAS
 %cálculo da altura útil, momento de projeto e alguns adicionais
-if fck < 35
+if fck < 30
     rohmin = 0.15;
 else
-    rohmin = 0.0029*fck + 0.0613;
+    rohmin = ((-1*10^-5)*fck)+0.0038*fck + 0.0436;
 end
 dlin = C+dest+dtrac/2;
 d2lin = C+dest+dcomp/2;
@@ -585,7 +606,7 @@ Abcomp = (pi*dcomp^2/4);
 %  2.1 Seção Retangular
 if type == 2
 %teste da necessidade de armadura de compressão
-    for n = 0:1
+    for n = 0:2
         dnew = d;
         d2linnew = d2lin;
         dmin = 2*sqrt(md/(bw*c*fcd));
@@ -691,7 +712,7 @@ if type == 2
             return
         end
         if d == dnew && d2lin == d2linnew
-            n = 1;
+            n = n+1;
         end
     end
 
@@ -839,10 +860,12 @@ if type == 2
         end
     end
     if As == Asmin
-        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',num2str(dtrac/m(:).'),'mm (Armadura miníma de tração)']);
+        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',...
+            num2str(dtrac/m(:).'),'mm (Armadura miníma de tração)']);
         text(bw,-0.1*h,subtitle);
     else
-        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',num2str(dtrac/m(:).'),'mm']);
+        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',...
+            num2str(dtrac/m(:).'),'mm']);
         text(bw,-0.1*h,subtitle);
     end
 
@@ -938,15 +961,17 @@ if type == 2
         end
     end
     if port_est == 1
-        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',num2str(dcomp/m(:).'),'mm (Porta Estribos)']);
+        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',...
+            num2str(dcomp/m(:).'),'mm (Porta Estribos)']);
         text(bw,1.1*h,subtitle);  
     else
-        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',num2str(dcomp/m(:).'),'mm']);
+        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',...
+            num2str(dcomp/m(:).'),'mm']);
         text(bw,1.1*h,subtitle);
     end
     
     %desenhando a armadura de pele
-    freespc = h-(nlin2pel*(dtrac/c+ev)+nlincomp*(dcomp/c+evcomp)+2*(C+dest)/c);
+    freespc = h-(nlin2pel*(dtrac/c+ev)+nlincomp*(dcomp/c+evcomp)+2*(C+dest)/c+(x+dpele/2)/c);
     if Aspele > 0
         nbplPele = 2;
         Abpele = pi*((dpele)^2)/4;
@@ -965,17 +990,18 @@ if type == 2
                 hold on 
             end
         end
-        subtitle = num2str(['2x',num2str(nlinPele(:).'),' N3 \Phi',num2str(dpele/m(:).'),'mm']);
-        text(-0.1*h,0.5*h,subtitle,'Rotation',90,'VerticalAlignment','bottom');
+        subtitle = num2str(['2x',num2str(nlinPele(:).'),' N3 \Phi',...
+            num2str(dpele/m(:).'),'mm']);
+        text(-0.1*h,0.5*h,subtitle,'Rotation',90,...
+            'VerticalAlignment','bottom');
     end
-    beamidntf = num2str([get(handles.edit10,'String'),'(',num2str(bw(:).'),'x',num2str(h(:).'),')','-',get(handles.edit11,'String')]);
+    beamidntf = num2str([get(handles.edit10,'String'),'(',num2str(bw(:).'),...
+        'x',num2str(h(:).'),')','-',get(handles.edit11,'String')]);
     text(-0.2*h,1.1*h,beamidntf,'FontWeight','Bold')    
 else
 %  2.1 Seção Tê
     % Altura da LN
-    Ac = (bf*h-((bf-bw)*(h-hf)))*c^2;
-    Asmin = rohmin*Ac*c;
-    for n = 0:1
+    for n = 0:2
         dnew = d;
         d2linnew = d2lin;
         if h >= 60
@@ -998,6 +1024,8 @@ else
         x = KX*d;
     %caso esteja a LN na mesa
         if x/c <= hf
+            Ac = (bf*h-((bf-bw)*(h-hf)))*c^2;
+            Asmin = rohmin*Ac*c;
             elin ='---------------';
             KZ = 1-0.4*KX;
             As = md/(KZ*d*fyd);
@@ -1013,6 +1041,9 @@ else
             end
     %caso nao esteja
         else
+            Ac = (bf*h-((bf-bw)*(h-hf)))*c^2;
+            Acmin = bw*h*c^2;
+            Asmin = rohmin*Acmin*c;
             mdflg = 0.85*fcd*(hf*c)*(bf-bw)*c*(d-(hf*c/2));
             mdwire = md-mdflg;
             Asflg = mdflg/((d-(hf*c/2))*fyd);
@@ -1122,7 +1153,7 @@ else
             return
         end
         if d == dnew && d2lin == d2linnew
-            n = 1;
+            n = n+1;
         end
     %if x <= 0
         nlin2pel = nlin;
@@ -1130,7 +1161,7 @@ else
         if As < Asmin
             As = Asmin;
         elseif (As+Aslin) > Asmax
-            msg = 'A soma das armaduras de compressão e tração, resulta em um valor superior a 4% da área de concreto da seção. É recomendado que altere sua seção para comportar o esforço solicitado';
+            msg = 'A soma das armaduras de compressão e tração,... resulta em um valor superior a 4% da área de concreto da seção. É recomendado que altere sua seção para comportar o esforço solicitado';
             title = 'ÁREA DE AÇO MÁXIMA ATINGIDA';
             errordlg(msg,title);
             return
@@ -1163,21 +1194,33 @@ else
     %desenhando o estribo:
     if dest > 0
         if port_est == 1
-            Vdobraex = [(C+dportEst+dest)/c,(C+dportEst+dest)/c,(C+dportEst+2*dest)/c,(C+dportEst+2*dest)/c];
-            Vdobraey = [(h*c-C-dest)/c,(h*c-C-2*dest-(0.03+dportEst))/c,(h*c-C-2*dest-(0.03+dportEst))/c,(h*c-C)/c];
+            Vdobraex = [(C+dportEst+dest)/c,(C+dportEst+dest)/c,...
+                (C+dportEst+2*dest)/c,(C+dportEst+2*dest)/c];
+            Vdobraey = [(h*c-C-dest)/c,(h*c-C-2*dest-(0.03+dportEst))/c,...
+                (h*c-C-2*dest-(0.03+dportEst))/c,(h*c-C)/c];
             Hdobraex = [C+dest,C+dest+dportEst,C+dest+dportEst,C+dest,C+dest]/c;
-            Hdobraey = [h*c-C-dest-dportEst,h*c-C-dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-dest-dportEst]/c;
-            H2dobraex = [C+2*dest+dportEst,C+2*dest+dportEst+0.03,C+2*dest+dportEst+0.03,C+2*dest+dportEst,C+2*dest+dportEst]/c;
-            H2dobraey = [h*c-C-dest-dportEst,h*c-C-dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-dest-dportEst]/c;
-            eix = [C+dest+dportEst,C+dest,C+dest,bw*c-C-dest,bw*c-C-dest,C+2*dest+dportEst]/c;
+            Hdobraey = [h*c-C-dest-dportEst,h*c-C-dest-dportEst,...
+                h*c-C-2*dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-dest-dportEst]/c;
+            H2dobraex = [C+2*dest+dportEst,C+2*dest+dportEst+0.03,...
+                C+2*dest+dportEst+0.03,C+2*dest+dportEst,C+2*dest+dportEst]/c;
+            H2dobraey = [h*c-C-dest-dportEst,h*c-C-dest-dportEst,...
+                h*c-C-2*dest-dportEst,h*c-C-2*dest-dportEst,h*c-C-dest-dportEst]/c;
+            eix = [C+dest+dportEst,C+dest,C+dest,bw*c-C-dest,...
+                bw*c-C-dest,C+2*dest+dportEst]/c;
         else
-            Vdobraex = [(C+dcomp+dest)/c,(C+dcomp+dest)/c,(C+dcomp+2*dest)/c,(C+dcomp+2*dest)/c];
-            Vdobraey = [(h*c-C-dest)/c,(h*c-C-2*dest-(0.03+dcomp))/c,(h*c-C-2*dest-(0.03+dcomp))/c,(h*c-C)/c];
+            Vdobraex = [(C+dcomp+dest)/c,(C+dcomp+dest)/c,...
+                (C+dcomp+2*dest)/c,(C+dcomp+2*dest)/c];
+            Vdobraey = [(h*c-C-dest)/c,(h*c-C-2*dest-(0.03+dcomp))/c,...
+                (h*c-C-2*dest-(0.03+dcomp))/c,(h*c-C)/c];
             Hdobraex = [C+dest,C+dest+dcomp,C+dest+dcomp,C+dest,C+dest]/c;
-            Hdobraey = [h*c-C-dest-dcomp,h*c-C-dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-dest-dcomp]/c;
-            H2dobraex = [C+2*dest+dcomp,C+2*dest+dcomp+0.03,C+2*dest+dcomp+0.03,C+2*dest+dcomp,C+2*dest+dcomp]/c;
-            H2dobraey = [h*c-C-dest-dcomp,h*c-C-dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-dest-dcomp]/c;
-            eix = [C+dest+dcomp,C+dest,C+dest,bw*c-C-dest,bw*c-C-dest,C+2*dest+dcomp]/c;
+            Hdobraey = [h*c-C-dest-dcomp,h*c-C-dest-dcomp,...
+                h*c-C-2*dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-dest-dcomp]/c;
+            H2dobraex = [C+2*dest+dcomp,C+2*dest+dcomp+0.03,...
+                C+2*dest+dcomp+0.03,C+2*dest+dcomp,C+2*dest+dcomp]/c;
+            H2dobraey = [h*c-C-dest-dcomp,h*c-C-dest-dcomp,...
+                h*c-C-2*dest-dcomp,h*c-C-2*dest-dcomp,h*c-C-dest-dcomp]/c;
+            eix = [C+dest+dcomp,C+dest,C+dest,bw*c-C-dest,...
+                bw*c-C-dest,C+2*dest+dcomp]/c;
         end
         eex = [C/c,C/c,bw-C/c,bw-C/c,C/c];
         eey = [C/c,h-C/c,h-C/c,C/c,C/c];
@@ -1266,10 +1309,12 @@ else
     end
     nlin2pel = nlin;
     if As == Asmin
-        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',num2str(dtrac/m(:).'),'mm (Armadura miníma de tração)']);
+        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',...
+            num2str(dtrac/m(:).'),'mm (Armadura miníma de tração)']);
         text(bw,-0.1*h,subtitle);
     else
-        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',num2str(dtrac/m(:).'),'mm']);
+        subtitle = num2str([num2str(nbtrac(:).'),' N1 \Phi',...
+            num2str(dtrac/m(:).'),'mm']);
         text(bw,-0.1*h,subtitle);
     end
 
@@ -1365,14 +1410,16 @@ else
         end
     end
     if port_est == 1
-        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',num2str(dcomp/m(:).'),'mm (Porta Estribos)']);
+        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',...
+            num2str(dcomp/m(:).'),'mm (Porta Estribos)']);
         text(bw,1.1*h,subtitle);  
     else
-        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',num2str(dcomp/m(:).'),'mm']);
+        subtitle = num2str([num2str(nbcomp(:).'),' N2 \Phi',...
+            num2str(dcomp/m(:).'),'mm']);
         text(bw,1.1*h,subtitle);
     end
     %desenhando a armadura de pele
-    freespc = h-(nlin2pel*(dtrac/c+ev)+nlincomp*(dcomp/c+evcomp)+2*(C+dest)/c);
+    freespc = h-(nlin2pel*(dtrac/c+ev)+nlincomp*(dcomp/c+evcomp)+2*(C+dest)/c+(x+dpele/2)/c);
     if Aspele > 0
         nbplPele = 2;
         Abpele = pi*((dpele)^2)/4;
@@ -1391,12 +1438,17 @@ else
                 hold on 
             end
         end
-        subtitle = num2str(['2x',num2str(nlinPele(:).'),' N3 \Phi',num2str(dpele/m(:).'),'mm']);
-        text(-0.1*h,0.35*h,subtitle,'Rotation',90,'VerticalAlignment','bottom');
+        subtitle = num2str(['2x',num2str(nlinPele(:).'),' N3 \Phi',...
+            num2str(dpele/m(:).'),'mm']);
+        text(-0.1*h,0.35*h,subtitle,'Rotation',90,...
+            'VerticalAlignment','bottom');
     end
-    beamidntf = num2str([get(handles.edit10,'String'),'(',num2str(bw(:).'),'x',num2str(h(:).'),')','-',get(handles.edit11,'String')]);
+    beamidntf = num2str([get(handles.edit10,'String'),...
+        '(',num2str(bw(:).'),'x',num2str(h(:).'),')',...
+        '-',get(handles.edit11,'String')]);
     text(-b1,1.2*h,beamidntf,'FontWeight','Bold');
 end
+
 %  3.0 Apresentação dos resultados
 if es == elim && (0<=ec && ec<=3.5*m)
     domain = '               2';
@@ -1420,9 +1472,10 @@ if isnumeric(elin)
 end
 toc;
 elapsedTime = toc;
-% Ascalc,As'calc,Asefetv,As'efetv,Aspelecalc,Aspeleefetiv,altura
-% util,d',d",Profundidade da LN,adimensional de profundidade da LN,deformação no concreto,deformação no aço tracionado, deformação no aço comprimido,tempo decorrido de processamento
-savedata = {Ac*10^4,Asmin*10^4,Asmax*10^4,As*10^4,nbtrac*Ab*10^4,Ab*10^4,Aslin*10^4,nbcomp*Abcomp*10^4,Abcomp*10^4,Aspele*10^4,nlinPele*2*Abpele*10^4,d/c,h-d/c,d2lin/c,x/c,KX,ec/m,es/m,elin,ev,eh,domain,elapsedTime};
+savedata = {Ac*10^4,Asmin*10^4,Asmax*10^4,As*10^4,nbtrac*Ab*10^4,...
+    Ab*10^4,Aslin*10^4,nbcomp*Abcomp*10^4,Abcomp*10^4,Aspele*10^4,...
+    nlinPele*2*Abpele*10^4,d/c,h-d/c,d2lin/c,x/c,KX,ec/m,es/m,...
+    elin,ev,eh,domain,elapsedTime};
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -1431,11 +1484,19 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global savedata
 colFormat = {'bank','bank'};
-rowname = {'Ac','Asmin','Asmáx','As','Asef.','AbT','As''','As''ef.','AbC','AsP','AsPef.','d','d"','d''','x',num2str([char(946),'x']),num2str([char(949),'c']),num2str([char(949),'s']),num2str([char(949),'''']),'av','ah','Domin.','Tempo'};
-thirddata = {'cm²','cm²','cm²','cm²','cm²','cm²','cm²','cm²','cm²','cm²','cm²','cm','cm','cm','cm','adm','‰','‰','‰','cm','cm','-','s'};
+rowname = {'Ac','Asmin','Asmáx','As','Asef.',...
+    'AbT','As''','As''ef.','AbC','AsP','AsPef.',...
+    'd','d"','d''','x',num2str([char(946),'x']),...
+    num2str([char(949),'c']),num2str([char(949),'s']),...
+    num2str([char(949),'''']),'av','ah','Domin.','Tempo'};
+thirddata = {'cm²','cm²','cm²','cm²',...
+    'cm²','cm²','cm²','cm²','cm²','cm²',...
+    'cm²','cm','cm','cm','cm','adm','‰',...
+    '‰','‰','cm','cm','-','s'};
 columnwidth = {'auto',40};
 alldata = [savedata',thirddata'];
-set(handles.uitable1,'Data',alldata,'ColumnFormat',colFormat,'RowName',rowname,'ColumnWidth',columnwidth);
+set(handles.uitable1,'Data',alldata,'ColumnFormat',...
+    colFormat,'RowName',rowname,'ColumnWidth',columnwidth);
 
 
 
@@ -1536,7 +1597,10 @@ function sub41_Callback(hObject, eventdata, handles)
 global definput
 global answer
 global cont
-prompt = {'Diâmetro do porta estribos(mm):','Diâmetro das armaduras de compressão(mm): (DEFAULT:\PhiAs \rightarrow \PhiAs'' )','Diâmetro da armadura de pele(mm):','Continuar cálculo sem armadura concentrada?  Use: 1 = TRUE e 0 = FALSE'};
+prompt = {'Diâmetro do porta estribos(mm):'...
+    ,'Diâmetro das armaduras de compressão(mm): (DEFAULT:\PhiAs \rightarrow \PhiAs'' )',...
+    'Diâmetro da armadura de pele(mm):',...
+    'Continuar cálculo sem armadura concentrada(não recomendado)?  Use: 1 = TRUE e 0 = FALSE'};
 dlgtitle = 'REDEFINIÇÃO DE ARMADURAS PADRÃO';
 dims = [1 80];
 opts.Interpreter = 'tex';
